@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Classifier</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body style="background-color: lightblue;">
+    <div class="container">
+        <h1 style="color: black;">Image Classifier</h1>
+        <h2 style="color: blue;">Kelompok: Insight 2</h2>
+        <p style="color: black;">Anggota:</p>
+        <ul style="color: black;">
+            <li>ARIN MARSHANDA</li>
+            <li>NUR HALILLAH NURDIN</li>
+            <li>NILAM DIVA VALERIAN</li>
+            <li>ARDIAN DWI ANGGARA</li>
+            <li>MELISAH KALAKA</li>
+            <li>YOHANES SATRIO WILGO</li>
+        </ul>
+        <form method="post" enctype="multipart/form-data" action="/predict">
+            <input type="file" name="file">
+            <input type="submit" value="Upload">
+        </form>
+        {% if predicted_class %}
+        <div>
+            <h2 style="color: blue;">Hasil Prediksi:</h2>
+            <p style="color: blue;">Kelas: {{ predicted_class }}</p>
+            <p style="color: blue;">Confidence: {{ confidence }}</p>
+        </div>
+        <div>
+            <img src="{{ url_for('static', filename='uploads/' + file.filename) }}" style="max-width: 300px; margin-top: 20px;">
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
